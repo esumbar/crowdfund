@@ -1,17 +1,13 @@
-current_time = Time.new
-formatted_time = current_time.strftime("%A %m/%d/%Y %I:%M%p")
-puts "It is currently #{formatted_time}\n"
+def today
+  current_time = Time.new
+  current_time.strftime("%A %m/%d/%Y")
+end
 
-project1 = 'ABC'
-funding1 = 1000
-
-project2 = 'LMN'
-funding2 = 2000
-
-project3 = 'XYZ'
-funding3 = 23000
+def say_funding(project, funding=10000)
+  "Project #{project.upcase} has $#{funding} in funding as of #{today}"
+end
 
 puts "Projects:"
-puts "\tProject #{project1} has $#{funding1} in funding."
-puts "\tProject #{project2} has $#{funding2} in funding."
-puts "\tProject #{project3} has $#{funding3} in funding."
+puts say_funding("abc", 1000)
+puts say_funding("lmn")
+puts say_funding("xyz", 23000)
