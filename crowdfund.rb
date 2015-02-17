@@ -1,10 +1,22 @@
 class Project
+  
+  attr_accessor :name
+  attr_reader :funding, :target
+
   def initialize(name, funding, target)
     @name = name.upcase
     @funding = funding
     @target = target
   end
+
+  def name=(new_name)
+    @name = new_name.upcase
+  end
   
+  def funding_shortfall
+    @target - @funding
+  end
+
   def to_s
     "Project #{@name} has $#{@funding} in funding towards a goal of $#{@target}."
   end
@@ -31,3 +43,10 @@ project2.add_funds
 
 puts project1
 puts project2
+
+puts project1.name
+puts project1.funding
+puts project1.target
+puts project1.funding_shortfall
+project1.name = "abc"
+puts project1
