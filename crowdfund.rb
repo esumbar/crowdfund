@@ -33,20 +33,27 @@ class Project
 end
 
 project1 = Project.new("lmn", 500, 3000)
-puts project1
-
 project2 = Project.new("xyz", 25, 75)
-puts project2
 
-project1.remove_funds
-project2.add_funds
+projects = [project1, project2]
 
-puts project1
-puts project2
+puts "There are #{projects.size} projects in the fundraising program:"
+projects.each do |project|
+  puts project
+end
 
-puts project1.name
-puts project1.funding
-puts project1.target
-puts project1.funding_shortfall
-project1.name = "abc"
-puts project1
+projects.each do |project|
+  puts project.target
+end
+
+projects.each do |project|
+  project.add_funds
+  project.remove_funds
+  puts project
+end
+
+projects.pop
+projects.push Project.new("abc", 200, 1000)
+projects.each do |project|
+  puts project
+end
