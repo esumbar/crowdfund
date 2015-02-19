@@ -32,28 +32,34 @@ class Project
   end
 end
 
+class ProjectCollection
+  def initialize(name)
+    @name = name
+    @projects = []
+  end
+  
+  def add_project(project)
+    @projects << project
+  end
+
+  def request_funding
+    puts "#{@name} comprises #{@projects.size} projects:"
+    @projects.each do |p|
+      puts p
+    end
+    @projects.each do |p|
+      p.add_funds
+      p.add_funds(40)
+      p.remove_funds
+      puts p
+    end
+  end
+end
+
 project1 = Project.new("lmn", 500, 3000)
 project2 = Project.new("xyz", 25, 75)
 
-projects = [project1, project2]
-
-puts "There are #{projects.size} projects in the fundraising program:"
-projects.each do |project|
-  puts project
-end
-
-projects.each do |project|
-  puts project.target
-end
-
-projects.each do |project|
-  project.add_funds
-  project.remove_funds
-  puts project
-end
-
-projects.pop
-projects.push Project.new("abc", 200, 1000)
-projects.each do |project|
-  puts project
-end
+startup = ProjectCollection.new("VC-Friendly Start-up Projects")
+startup.add_project(project1)
+startup.add_project(project2)
+startup.request_funding
