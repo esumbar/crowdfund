@@ -3,7 +3,7 @@ class Project
   attr_accessor :name
   attr_reader :funding, :target
 
-  def initialize(name, funding, target)
+  def initialize(name, target, funding=0)
     @name = name.upcase
     @funding = funding
     @target = target
