@@ -35,4 +35,27 @@ describe Project do
       expect(@project.funding).to eq(0)
     end
   end
+
+  context "in which funding equals or exceeds the target" do
+    before do
+      funding = target = 1000
+      @project = Project.new("abc", target, funding)
+    end
+
+    it "is fully funded" do
+      expect(@project).to be_fully_funded
+    end
+  end
+
+  context "in which funding is less than the target" do
+    before do
+      funding = 500
+      target = 1000
+      @project = Project.new("abc", target, funding)
+    end
+
+    it "is under funded" do
+      expect(@project).not_to be_fully_funded
+    end
+  end
 end
