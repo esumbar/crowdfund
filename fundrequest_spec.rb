@@ -4,9 +4,8 @@ describe FundRequest do
   before do
     @funding_campaign = FundRequest.new("A Funding Campaign")
 
-    @target_funding = 75
     @initial_funding = 25
-    @project = Project.new("a project", @target_funding, @initial_funding)
+    @project = Project.new("a project", 75, @initial_funding)
 
     @funding_campaign.add_project(@project)
     $stdout = StringIO.new
