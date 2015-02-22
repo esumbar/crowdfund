@@ -1,5 +1,5 @@
 require_relative 'project'
-require_relative 'die'
+require_relative 'funding_round'
 
 class FundRequest
   def initialize(name)
@@ -17,12 +17,7 @@ class FundRequest
       puts p
     end
     @projects.each do |p|
-      number_rolled = Die.new.roll
-      if number_rolled.even?
-        p.add_funds
-      else
-        p.remove_funds
-      end
+      FundingRound.seek_funding(p)
     end
   end
 end
