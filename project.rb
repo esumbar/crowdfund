@@ -21,6 +21,10 @@ class Project
     funding_shortfall <= 0
   end
 
+  def <=>(other)
+    other.funding_shortfall <=> self.funding_shortfall
+  end
+
   def to_s
     "Project #{@name} has $#{@funding} in funding towards a goal of $#{@target}."
   end
