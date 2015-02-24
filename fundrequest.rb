@@ -22,7 +22,7 @@ class FundRequest
     puts "\nUnder funded projects and their shortfalls:"
     under_funded.sort.each do |p|
       formatted_name = p.name.ljust(20, '.')
-      puts "#{formatted_name} #{p.funding_shortfall}"
+      puts "#{formatted_name} $#{p.funding_shortfall}"
     end
   end
 
