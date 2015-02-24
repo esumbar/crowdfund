@@ -1,5 +1,6 @@
 require_relative 'project'
 require_relative 'funding_round'
+require_relative 'pledge_pool'
 
 class FundRequest
   def initialize(name)
@@ -26,9 +27,14 @@ class FundRequest
   end
 
   def request_funding(rounds)
-    puts "#{@name} comprises #{@projects.size} projects:"
+    puts "\n#{@name} comprises #{@projects.size} projects:"
     @projects.each do |p|
       puts p
+    end
+
+    puts "\nThere are 3 possible pledge amounts:"
+    PledgePool::PLEDGES.each do |p|
+      puts "A #{p.name} pledge is worth $#{p.amount}."
     end
 
     1.upto(rounds) do |round|
