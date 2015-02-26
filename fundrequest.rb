@@ -3,6 +3,7 @@ require_relative 'funding_round'
 require_relative 'pledge_pool'
 
 class FundRequest
+
   def initialize(name)
     @name = name
     @projects = []
@@ -24,6 +25,13 @@ class FundRequest
       formatted_name = p.name.ljust(20, '.')
       puts "#{formatted_name} $#{p.funding_shortfall}"
     end
+
+    @projects.each do |project|
+      puts "\nProject #{project.name}'s pledges:"
+      project.each_pledge do |pledge|
+        puts "$#{pledge.amount} in #{pledge.name} pledges"
+      end
+    end
   end
 
   def request_funding(rounds)
@@ -44,4 +52,5 @@ class FundRequest
       end      
     end
   end
+
 end

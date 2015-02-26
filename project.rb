@@ -1,3 +1,5 @@
+require_relative 'pledge_pool'
+
 class Project
   
   attr_accessor :name
@@ -26,6 +28,12 @@ class Project
     @pledges[pledge.name] += pledge.amount    
     puts "Project #{@name} received a #{pledge.name} pledge worth $#{pledge.amount}."
     puts "Project #{@name}'s pledges: #{@pledges}"
+  end
+
+  def each_pledge
+    @pledges.each do |name, amount|
+      yield Pledge.new(name, amount)
+    end
   end
 
   def funding_shortfall
