@@ -1,3 +1,4 @@
+require "csv"
 require_relative 'project'
 require_relative 'funding_round'
 require_relative 'pledge_pool'
@@ -7,6 +8,29 @@ class FundRequest
   def initialize(name)
     @name = name
     @projects = []
+  end
+
+  def formatted_under_funded(project)
+    formatted_name = project.name.ljust(20, '.')
+    "#{formatted_name} $#{project.funding_shortfall}"
+  end
+
+  def save_under_funded(under_funded_file="under_funded.txt")
+    File.open(under_funded_file, "w") do |file|
+      file.puts "Under funded projects and their shortfalls:"
+      under_funded = @projects.reject { |p| p.fully_funded? }
+      under_funded.sort.each do |p|
+        file.puts self.formatted_under_funded(p)
+      end
+    end
+  end
+
+  def from_file(project_file)
+    CSV.foreach(project_file) do |row|
+      name, target, funding = row
+      project = Project.new(name, Integer(target), Integer(funding))
+      self.add_project(project)
+    end
   end
   
   def add_project(project)

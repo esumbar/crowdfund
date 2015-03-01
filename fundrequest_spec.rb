@@ -33,4 +33,5 @@ describe FundRequest do
       expect(@project.funding).to eq(@initial_funding - (15 * @funding_rounds))
     end
   end
+
 end
