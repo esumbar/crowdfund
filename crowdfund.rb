@@ -1,7 +1,11 @@
 require_relative 'fundrequest'
+require_relative 'matching_project'
 
 startup = FundRequest.new("VC-Friendly Start-up Projects")
 startup.from_file(ARGV.shift || "projects.csv")
+
+match = MatchingProject.new("match", 2000, 500)
+startup.add_project(match)
 
 loop do
   puts "\nHow many funding rounds? ('quit' to exit)"
